@@ -33,8 +33,8 @@ class TodoList
   end
 
   def mark_todo
-    puts "what have you done?"
-    get_input
+    puts "what todo have you done?"
+    # get_input
     Todo.update(get_input, completed: true)
   end
 
