@@ -1,17 +1,13 @@
+require_relative "../db/setup.rb"
 require_relative "todo"
 
 class TodoList
 
-
-  def initialize(file_name)
-    @file_name = file_name
-  end
-
   def start
     loop do
+      @todos = Todo.all
       system('clear')
-
-      puts "---- TODO.rb ----"
+      puts "----Todo List----"
 
       view_todos
 
@@ -31,13 +27,28 @@ class TodoList
     end
   end
 
-  def todos
-    @todos
+  def add_todo
+    puts "What do you need to do?"
+    Todo.create(entry: get_input)
+  end
+
+  def mark_todo
+    puts "what have you done?"
+    get_input
+    Todo.update(get_input, completed: true)
+  end
+
+  def view_todos
+    @todos.each do |item|
+      puts "#{item.id} #{item.entry} #{item.completed}"
+
+    end
   end
 
   private
   def get_input
     gets.chomp
   end
-
 end
+
+TodoList.new.start
