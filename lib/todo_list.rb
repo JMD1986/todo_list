@@ -14,7 +14,7 @@ class TodoList
       system('clear')
       puts "
       +--------------------------------------------------------------------+
-      |                            #{username}'s TODO LIST                              |
+      |                        #{username}'s TODO LIST                              |
       +--------------------------------------------------------------------+"
       view_todos
 
@@ -54,7 +54,11 @@ class TodoList
   def mark_todo
     puts "which todo have you done?
       (please pick id number)"
-    Todo.update(get_input, completed: true)
+      if Todo.find(get_input) == nil
+        puts "that's not an option"
+      else
+        Todo.update(get_input, completed: true)
+      end
   end
 
   def view_todos
