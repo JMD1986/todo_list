@@ -13,24 +13,23 @@ class TodoList
       @todos = Todo.all
       system('clear')
       puts "
-      +--------------------------------------------------------------------+
-      |                        #{username}'s TODO LIST                              |
-      +--------------------------------------------------------------------+"
+        +--------------------------------------------------------------------+
+        |                        #{username}'s TODO LIST                              |
+        +--------------------------------------------------------------------+"
       view_todos
 
       puts
       puts "What would you like to do?"
       puts
-      puts "1) Exit 2) Add Todo 3) Mark Todo As Complete 4) Remove Todo 5) Edit Todo 6) Exit"
+      puts "1) Add Todo 2) Mark Todo As Complete 3) Remove Todo 4) Edit Todo 5) Exit"
       print " > "
       action = gets.chomp.to_i
       case action
-      when 1 then exit
-      when 2 then add_todo
-      when 3 then mark_todo
-      when 4 then destroy_todo
-      when 5 then edit_todo
-      when 6 then system('clear')
+      when 1 then add_todo
+      when 2 then mark_todo
+      when 3 then destroy_todo
+      when 4 then edit_todo
+      when 5 then system('clear')
       puts "thanks #{username}. Follow your dreams!"
         exit
       else
@@ -41,7 +40,7 @@ class TodoList
   end
 
   def welcome_screen
-      system('clear')
+    system('clear')
     puts "Hello there! what is your name?"
     @username = get_input
   end
@@ -52,11 +51,11 @@ class TodoList
   end
 
   def mark_todo
-    puts "which todo have you done?
-      (please pick id number)"
-      if Todo.find(get_input) == nil
-        puts "that's not an option"
-      else
+    puts "which todo have you done? (please pick id number)"
+      # The following code doesn't work :-/
+      # if Todo.find(get_input) == nil
+      #   puts "that's not an option"
+      # else
         Todo.update(get_input, completed: true)
       end
   end
@@ -84,6 +83,6 @@ class TodoList
   def get_input
     gets.chomp
   end
-end
+
 
 TodoList.new.start

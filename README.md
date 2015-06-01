@@ -1,4 +1,4 @@
-### This is a command line Todo List program
+# This is a command line Todo List program
 
 ## if you would like to use it just do the following.
 
